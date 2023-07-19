@@ -1,20 +1,40 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import React, {useState} from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import navigationTheme from './app/navigation/navigationTheme';
+import OfflineNotice from './app/components/OfflineNotice';
+import AuthNavigator from './app/navigation/AuthNavigator';
+import AppNavigator from './app/navigation/AppNavigator';
+import AuthContext from './app/auth/context';
+
 
 export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
+  const [user, setUser] = useState();
+     return(
+      <AuthContext.Provider value={{user, setUser}}>
+         <OfflineNotice/>
+        <NavigationContainer theme={navigationTheme}>
+          { user ? <AppNavigator/> : <AuthNavigator/>}
+        </NavigationContainer>
+        </AuthContext.Provider>
+     )
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+
+
+
+
+
+
+
+
+
+//   ImagePicker.requestCameraPermissionsAsync().then((res) => console.log(res)).catch((err) => console.log('error: ',error) ).finally(() => console.log("fibally here "));
+// const key = "hello"
+// obj = {
+// granted: true, hello: "world!", hey: "you"
+// }
+
+// obj.granted
+// obj[key] //world!
+// obj["granted"] // true
+// const {hey} = obj
