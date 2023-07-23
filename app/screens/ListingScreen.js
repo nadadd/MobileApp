@@ -15,21 +15,22 @@ function ListingScreen({ navigation }) {
    const getListingsApi = useApi(listingsApi.getListings);
 
   useEffect(() => {
-    getListingsApi.request(1, 2, 3);
+    getListingsApi.request();
   }, []);
 
 
   return (
+    <>
+      <ActivityIndicator visible={getListingsApi.loading}/>
     <Screen style={styles.screen}>
-       getListingsApi.error && (
+      { getListingsApi.error && (
         <>
         <AppText>
           Couldn't retrieve the listings
           </AppText>
         <AppButton title="Retry" onPress={getListingsApi.request} />
         </>
-      );
-      <ActivityIndicator visible={getListingsApi.loading}/>
+      )}
     <FlatList
        data={getListingsApi.data}
        keyExtractor={listings => listings.id.toString()}
@@ -43,6 +44,7 @@ function ListingScreen({ navigation }) {
          />}
       />
     </Screen>
+    </>
   );
 };
 
