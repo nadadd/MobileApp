@@ -2,6 +2,7 @@
   "expo": {
     "name": "formationNative",
     "slug": "formationNative",
+    "privacy": "unlisted",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./app/assets/icon.png",
@@ -17,7 +18,9 @@
     ],
     "ios": {
       "supportsTablet": true,
-      "jsEngine": "jsc"
+      "jsEngine": "jsc",
+      "bundleIdentifier": "com.nadadh.formationNative",
+      "buildNumber": "1.0.0"
     },
     "android": {
       "jsEngine": "jsc",
@@ -28,6 +31,11 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "b8a5d863-09ea-4b4a-a2fc-864f547db8c3"
+      }
     }
   }
 }
